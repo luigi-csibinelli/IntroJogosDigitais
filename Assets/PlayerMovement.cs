@@ -4,10 +4,12 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed;
+    AudioSource audio;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.tag == "Coletavel")
         {
+            audio.Play();
             Destroy(other.gameObject);
         }
     }
