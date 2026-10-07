@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public float speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,6 +18,14 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
 
-        rb.MovePosition(rb.position + movement);
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Coletavel")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
